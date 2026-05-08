@@ -3,119 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اسم الكافية | القائمة الرقمية</title>
+    <title>فعاليات الكافية | حجز</title>
     <style>
-        :root {
-            --primary-gold: #c5a059;
-            --dark-bg: #0a0a0a;
-            --card-bg: #141414;
-            --text-white: #ffffff;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-white);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 24px;
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        p {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-        }
-
-        .links-wrapper {
-            display: grid;
-            gap: 15px;
-        }
-
-        .link-card {
-            background: var(--card-bg);
-            border: 1px solid #222;
-            padding: 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-white);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .link-card:hover {
-            border-color: var(--primary-gold);
-            transform: translateY(-3px);
+        body { background-color: #0f0f0f; color: #fff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .event-card {
             background: #1a1a1a;
+            border-left: 4px solid #c5a059;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
-        .main-btn {
-            background: var(--primary-gold);
-            color: black;
+        .status { color: #c5a059; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { margin: 10px 0; font-weight: 300; }
+        .details { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+        .book-btn {
+            background: #c5a059;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
             font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
         }
-
-        .footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #555;
-        }
+        .book-btn:hover { background: #e2ba73; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo">LOGO</div>
-        
-        <h1>اسم الكافية</h1>
-        <p>القهوة المختصة والحلى الفاخر</p>
-
-        <div class="links-wrapper">
-            <a href="#" class="link-card main-btn">تصفح المنيو الرقمي</a>
-            
-            <a href="#" class="link-card">موقعنا على Google Maps</a>
-            <a href="#" class="link-card">حسابنا في إنستقرام</a>
-            <a href="#" class="link-card">رأيك يهمنا (تقييم الخدمة)</a>
-            <a href="#" class="link-card">تواصل معنا واتساب</a>
+    <div class="event-card">
+        <span class="status">قريباً - May 15</span>
+        <h2>بطولة بلوت العز</h2>
+        <p class="details">انضم إلينا في ليلة حماسية.. المقاعد محدودة جداً.</p>
+        <div style="margin-bottom: 15px;">
+            <span>السعر: 50 ريال</span>
         </div>
-
-        <div class="footer">
-            جميع الحقوق محفوظة لعائلة العز
-        </div>
+        <button class="book-btn">احجز مقعدك الآن</button>
     </div>
 
 </body>
