@@ -3,104 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل طيور حديقة الريان</title>
+    <title>منصة الخدمات الاحترافية</title>
     <style>
-        :root { --gold: #c5a059; --dark: #0a0a0a; --card: #141414; }
-        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        :root { --gold: #c5a059; --dark: #0a0a0a; --card: #161616; --text: #ffffff; }
+        body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; }
         
-        .bird-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* Navigation */
+        nav { padding: 25px 5%; display: flex; justify-content: space-between; border-bottom: 1px solid #222; }
+        .logo { font-weight: bold; color: var(--gold); font-size: 1.2rem; }
 
-        .card {
-            background: var(--card);
-            border-radius: 15px;
-            border: 1px solid #222;
-            overflow: hidden;
+        /* Hero */
+        .hero { padding: 60px 5%; text-align: center; background: linear-gradient(to bottom, #111, var(--dark)); }
+        .hero h1 { font-size: 2.5rem; font-weight: 300; margin-bottom: 15px; }
+        .hero p { color: #888; max-width: 600px; margin: 0 auto 30px; }
+
+        /* Services Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5% 50px; }
+        .service-card { 
+            background: var(--card); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid #222; 
             transition: 0.3s;
+            text-align: center;
         }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .service-card h3 { color: var(--gold); margin-bottom: 15px; }
+        .price { font-size: 1.4rem; display: block; margin-bottom: 20px; font-weight: bold; }
 
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-
-        .img-placeholder {
-            width: 100%;
-            height: 220px;
-            background: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #444;
-            font-weight: bold;
+        /* Booking Form */
+        .booking-section { background: #111; padding: 60px 5%; border-radius: 30px 30px 0 0; }
+        .form-group { max-width: 500px; margin: 0 auto; display: grid; gap: 15px; }
+        input, select { 
+            background: #1a1a1a; border: 1px solid #333; padding: 15px; 
+            color: white; border-radius: 8px; font-size: 1rem;
         }
-
-        .info { padding: 20px; }
-        .tag { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        h2 { margin: 10px 0; font-weight: 300; font-size: 1.5rem; }
+        .btn-main { 
+            background: var(--gold); color: black; border: none; padding: 18px; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem;
+        }
         
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-            border-top: 1px solid #222;
-            padding-top: 15px;
-        }
-
-        .stat-item span { display: block; font-size: 0.75rem; color: var(--gold); }
-        .stat-item p { margin: 3px 0 0; font-size: 0.9rem; color: #ccc; }
-
-        .footer-rights { text-align: center; margin-top: 50px; color: #444; font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="bird-grid">
-        
-        <div class="card">
-            <div class="img-placeholder">صورة المكاو</div>
-            <div class="info">
-                <span class="tag">الببغاوات العظيمة</span>
-                <h2>ببغاء المكاو</h2>
-                <div class="stats">
-                    <div class="stat-item"><span>الموطن</span><p>أمريكا الجنوبية</p></div>
-                    <div class="stat-item"><span>الغذاء</span><p>مكسرات وفواكه</p></div>
-                </div>
-            </div>
+    <nav>
+        <div class="logo">LUXURY CENTER</div>
+        <div class="menu">القائمة</div>
+    </nav>
+
+    <section class="hero">
+        <h1>ارتقِ بتجربتك اليوم</h1>
+        <p>نقدم لك أفضل الخدمات باحترافية عالية وبيئة صممت لراحتك.</p>
+    </section>
+
+    <div class="grid">
+        <div class="service-card">
+            <h3>الخدمة الأساسية</h3>
+            <p style="color: #666; font-size: 0.9rem;">وصف بسيط للخدمة وما يميزها عن غيرها.</p>
+            <span class="price">250 ريال</span>
+            <button onclick="document.getElementById('booking').scrollIntoView()" class="btn-main" style="padding: 10px 20px; font-size: 0.9rem;">اختيار</button>
+        </div>
         </div>
 
-        <div class="card">
-            <div class="img-placeholder">صورة الكاسكو</div>
-            <div class="info">
-                <span class="tag">الأكثر ذكاءً</span>
-                <h2>الببغاء الإفريقي الرمادي</h2>
-                <div class="stats">
-                    <div class="stat-item"><span>الموطن</span><p>وسط أفريقيا</p></div>
-                    <div class="stat-item"><span>الميزة</span><p>تقليد الكلام بدقة</p></div>
-                </div>
-            </div>
+    <section id="booking" class="booking-section">
+        <div class="form-group">
+            <h2 style="text-align: center; color: var(--gold);">حجز موعد جديد</h2>
+            <input type="text" placeholder="الاسم الكامل">
+            <input type="tel" placeholder="رقم الجوال">
+            <select>
+                <option>اختر الخدمة</option>
+                <option>الخدمة الأولى</option>
+                <option>الخدمة الثانية</option>
+            </select>
+            <input type="date">
+            <button class="btn-main">تأكيد الحجز</button>
         </div>
+    </section>
 
-        <div class="card">
-            <div class="img-placeholder">صورة الكوكاتو</div>
-            <div class="info">
-                <span class="tag">الطيور المتوجة</span>
-                <h2>ببغاء الكوكاتو</h2>
-                <div class="stats">
-                    <div class="stat-item"><span>الموطن</span><p>أستراليا</p></div>
-                    <div class="stat-item"><span>الشخصية</span><p>مرح وحيوي</p></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer-rights">
+    <footer>
         جميع الحقوق محفوظة لعائلة العز &copy; 2026
-    </div>
+    </footer>
 
 </body>
 </html>
