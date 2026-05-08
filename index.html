@@ -3,46 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فعاليات الكافية | حجز</title>
+    <title>حديقة طيور الريان | تجربة الطبيعة الفاخرة</title>
     <style>
-        body { background-color: #0f0f0f; color: #fff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-        .event-card {
-            background: #1a1a1a;
-            border-left: 4px solid #c5a059;
+        :root {
+            --gold: #d4af37;
+            --dark: #121212;
+            --soft-white: #f8f9fa;
+            --gray: #2a2a2a;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--soft-white);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 5%;
+            text-align: center;
+            background: linear-gradient(rgba(18,18,18,0.8), rgba(18,18,18,0.8)), url('https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&q=80&w=1000') center/cover;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 300; }
+        .hero p { color: var(--gold); font-size: 1.2rem; margin-bottom: 30px; }
+
+        /* Gallery Grid */
+        .section-title { text-align: center; margin: 50px 0; font-weight: 300; font-size: 2rem; color: var(--gold); }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 0 5%;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: 0.4s;
+            filter: grayscale(30%);
+        }
+
+        .gallery img:hover { filter: grayscale(0%); transform: scale(1.03); }
+
+        /* FAQ Section */
+        .faq-container { padding: 50px 5%; max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: var(--gray);
+            margin-bottom: 15px;
             padding: 20px;
             border-radius: 8px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .status { color: #c5a059; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        h2 { margin: 10px 0; font-weight: 300; }
-        .details { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
-        .book-btn {
-            background: #c5a059;
-            color: #000;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
             cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
         }
-        .book-btn:hover { background: #e2ba73; }
+        .faq-item h3 { margin: 0; font-size: 1.1rem; color: var(--gold); }
+        .faq-item p { margin-top: 10px; font-size: 0.9rem; color: #ccc; display: none; }
+
+        /* Booking Section */
+        .booking-box {
+            background: var(--gold);
+            color: black;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 5%;
+            border-radius: 20px;
+        }
+
+        .btn {
+            background: black;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        footer { text-align: center; padding: 40px; font-size: 0.8rem; color: #555; }
     </style>
 </head>
 <body>
 
-    <div class="event-card">
-        <span class="status">قريباً - May 15</span>
-        <h2>بطولة بلوت العز</h2>
-        <p class="details">انضم إلينا في ليلة حماسية.. المقاعد محدودة جداً.</p>
-        <div style="margin-bottom: 15px;">
-            <span>السعر: 50 ريال</span>
-        </div>
-        <button class="book-btn">احجز مقعدك الآن</button>
+    <nav>
+        <div class="logo">RYAN BIRD PARK</div>
+        <div>القائمة</div>
+    </nav>
+
+    <header class="hero">
+        <h1>عالم من الجمال والسكينة</h1>
+        <p>استمتع بتجربة فريدة مع أندر الطيور في قلب الريان</p>
+        <a href="#booking" class="btn">احجز زيارتك الآن</a>
+    </header>
+
+    <h2 class="section-title">من زوايا الحديقة</h2>
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1522926193917-29334a6b588b?q=80&w=500" alt="طير ملون">
+        <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=500" alt="طير نادر">
+        <img src="https://images.unsplash.com/photo-1480044965905-02098d419e96?q=80&w=500" alt="ببغاء">
+        <img src="https://images.unsplash.com/photo-1550853024-fae8cd4be47f?q=80&w=500" alt="مدخل الحديقة">
     </div>
+
+    <div class="faq-container">
+        <h2 class="section-title">الأسئلة الشائعة</h2>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>هل يتطلب الدخول حجزاً مسبقاً؟</h3>
+            <p>نعم، لضمان أفضل تجربة لزوارنا وتفادي الزحام، نعتمد نظام الحجز المسبق للفترات الصباحية والمسائية.</p>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>ما هي أوقات العمل في الحديقة؟</h3>
+            <p>نستقبلكم يومياً من الساعة 4:00 عصراً وحتى الساعة 10:00 مساءً.</p>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>هل يسمح بإطعام الطيور؟</h3>
+            <p>نعم، نوفر علب طعام مخصصة للطيور داخل الحديقة لضمان سلامتها وصحتها.</p>
+        </div>
+    </div>
+
+    <div id="booking" class="booking-box">
+        <h2>هل أنت جاهز للزيارة؟</h2>
+        <p>اختر موعدك الآن واستعد للحظات لا تُنسى</p>
+        <a href="https://wa.me/966XXXXXXXXX" class="btn">تواصل عبر الواتساب للحجز</a>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة لعائلة العز &copy; 2026</p>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const p = element.querySelector('p');
+            p.style.display = p.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 
 </body>
 </html>
