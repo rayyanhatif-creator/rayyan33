@@ -3,91 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AL-EZZ PUSH | منصة الإطلاق الفخمة</title>
+    <title>نظام العز | FLASH BLAST</title>
     <style>
-        :root { --gold: #c5a059; --bg: #030303; --card: #101010; --border: #222; }
-        body { background: var(--bg); color: white; font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        :root {
+            --gold: #c5a059;
+            --dark: #0a0a0a;
+            --card: #141414;
+            --border: #222;
+            --text-gray: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* لوحة التحكم (جهة اليمين) */
+        .admin-panel {
+            width: 40%;
+            background: #000;
+            border-left: 1px solid var(--border);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label { color: var(--text-gray); font-size: 0.9rem; }
+
+        input, select {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 15px;
+            color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--gold); }
+
+        .btn-blast {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+        }
+
+        .btn-blast:hover { transform: scale(1.02); background: #d4af37; }
+
+        /* منطقة المعاينة (جهة اليسار) */
+        .preview-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            position: relative;
+        }
+
+        .preview-label {
+            position: absolute;
+            top: 40px;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* الجوال */
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            background: #000;
+            border: 8px solid #222;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+        }
+
+        .phone-screen {
+            height: 100%;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .phone-logo { color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 50px; }
         
-        /* Sidebar */
-        .sidebar { width: 100px; background: #000; border-left: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 30px 0; }
-        .logo-icon { color: var(--gold); font-size: 1.5rem; font-weight: bold; margin-bottom: 50px; }
-        .tool-icon { width: 50px; height: 50px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; cursor: grab; color: #444; transition: 0.3s; }
-        .tool-icon:hover { border-color: var(--gold); color: var(--gold); transform: scale(1.05); }
+        #preview-icon { font-size: 4rem; margin-bottom: 20px; transition: 0.5s; }
+        #preview-title { font-size: 2.5rem; color: var(--gold); font-weight: 300; margin: 0; }
+        #preview-desc { color: var(--text-gray); font-size: 0.9rem; margin: 20px 0; }
 
-        /* Main Canvas */
-        .canvas { flex: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
-        .canvas-header { position: absolute; top: 40px; right: 40px; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem; }
-
-        /* Offer Preview (The Centerpiece) */
-        .offer-preview { 
-            width: 300px; height: 400px; background: var(--card); border-radius: 25px; 
-            border: 2px solid #222; box-shadow: 0 40px 100px rgba(0,0,0,0.7); 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: 0.5s; position: relative; overflow: hidden;
+        .timer-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
         }
-        .offer-preview.active { border-color: var(--gold); }
-        .offer-preview .placeholder { color: #222; font-size: 5rem; }
 
-        /* Discount Text */
-        .discount-text { font-size: 3.5rem; color: var(--gold); font-weight: 200; margin: 0; display: none; }
-        .item-icon-preview { font-size: 4rem; margin-bottom: 20px; display: none; }
-
-        /* Launch Button */
-        .launch-btn { 
-            position: absolute; bottom: 50px; background: var(--gold); color: black; 
-            border: none; padding: 20px 60px; border-radius: 50px; font-weight: bold; 
-            font-size: 1.1rem; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);
-            opacity: 0.5; pointer-events: none;
+        .unit {
+            background: #111;
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 50px;
+            border: 1px solid #222;
         }
-        .launch-btn.ready { opacity: 1; pointer-events: all; }
-        .launch-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(197, 160, 89, 0.3); }
 
+        .unit span { display: block; font-size: 1.2rem; color: var(--gold); font-weight: bold; }
+        .unit label { font-size: 0.6rem; color: #444; }
+
+        footer {
+            margin-top: auto;
+            font-size: 0.6rem;
+            color: #333;
+        }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo-icon">E</div>
-        <div class="tool-icon" draggable="true" ondragstart="drag(event)" id="coffee">☕</div>
-        <div class="tool-icon" draggable="true" ondragstart="drag(event)" id="cake">🍰</div>
-        <div class="tool-icon" draggable="true" ondragstart="drag(event)" id="percent">50%</div>
-    </div>
-
-    <div class="canvas" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <div class="canvas-header">لوحة التحكم اللحظية | العز</div>
+    <div class="admin-panel">
+        <div class="logo">AL-EZZ FLASH CONTROL</div>
         
-        <div class="offer-preview" id="previewArea">
-            <div class="placeholder">⚡</div>
-            <div class="item-icon-preview" id="itemIcon">☕</div>
-            <h1 class="discount-text" id="discountVal">خصم 50%</h1>
-            <div style="color: #666; font-size: 0.9rem; margin-top: 10px; display: none;" id="timerDesc">العرض ينتهي خلال: 30:00</div>
+        <div class="input-group">
+            <label>اسم المنتج/الخدمة</label>
+            <select id="item-select" onchange="updatePreview()">
+                <option value="☕">قهوة مختصة</option>
+                <option value="🍰">حلا اليوم</option>
+                <option value="🏎️">غسيل VIP</option>
+                <option value="✂️">حلاقة فخمة</option>
+            </select>
         </div>
 
-        <button class="launch-btn" id="launchBtn">إطلاق العرض الآن ✨</button>
+        <div class="input-group">
+            <label>نسبة الخصم</label>
+            <input type="text" id="discount-input" placeholder="مثال: خصم 50%" onkeyup="updatePreview()">
+        </div>
+
+        <div class="input-group">
+            <label>وصف العرض</label>
+            <input type="text" id="desc-input" placeholder="اكتب نصاً محفزاً..." onkeyup="updatePreview()">
+        </div>
+
+        <div class="input-group">
+            <label>مدة العرض (بالدقائق)</label>
+            <input type="number" id="time-input" value="30" onchange="updatePreview()">
+        </div>
+
+        <button class="btn-blast" onclick="launchBlast()">إطلاق العرض الآن 🚀</button>
+    </div>
+
+    <div class="preview-area">
+        <div class="preview-label">معاينة مباشرة لجوال الزبون</div>
+        
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="phone-logo">AL-EZZ EXCLUSIVE</div>
+                
+                <div id="preview-icon">☕</div>
+                <h1 id="preview-title">خصم 50%</h1>
+                <p id="preview-desc">العرض متاح لأول 20 شخص فقط. تفضل بزيارتنا الآن.</p>
+                
+                <div class="timer-box">
+                    <div class="unit"><span id="m-timer">30</span><label>دقيقة</label></div>
+                    <div class="unit"><span>:</span></div>
+                    <div class="unit"><span id="s-timer">00</span><label>ثانية</label></div>
+                </div>
+
+                <div style="background: var(--gold); width: 100%; height: 50px; margin-top: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold;">
+                    تفعيل الخصم في الفرع
+                </div>
+
+                <footer>جميع الحقوق محفوظة لعائلة العز &copy; 2026</footer>
+            </div>
+        </div>
     </div>
 
     <script>
-        function allowDrop(ev) { ev.preventDefault(); }
-        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+        function updatePreview() {
+            const icon = document.getElementById('item-select').value;
+            const title = document.getElementById('discount-input').value || "خصم 50%";
+            const desc = document.getElementById('desc-input').value || "العرض متاح لأول 20 شخص فقط. تفضل بزيارتنا الآن.";
+            const time = document.getElementById('time-input').value || "30";
 
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var preview = document.getElementById('previewArea');
-            var placeholder = preview.querySelector('.placeholder');
-            
-            preview.classList.add('active');
-            placeholder.style.display = 'none';
+            document.getElementById('preview-icon').innerText = icon;
+            document.getElementById('preview-title').innerText = title;
+            document.getElementById('preview-desc').innerText = desc;
+            document.getElementById('m-timer').innerText = time;
+        }
 
-            if (data === 'coffee') {
-                document.getElementById('itemIcon').style.display = 'block';
-                document.getElementById('itemIcon').innerText = '☕';
-            } else if (data === 'percent') {
-                document.getElementById('discountVal').style.display = 'block';
-                document.getElementById('timerDesc').style.display = 'block';
-                document.getElementById('launchBtn').classList.add('ready');
-            }
+        function launchBlast() {
+            alert("تم إرسال العرض بنجاح إلى قاعدة بيانات الزبائن! 🚀");
+            // هنا يتم الربط مع n8n Webhook مستقبلاً
         }
     </script>
 
