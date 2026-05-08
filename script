@@ -1,0 +1,31 @@
+function launchSniper() {
+    // جمع البيانات من الخانات اللي في الصورة
+    const keywords = document.querySelector('input[placeholder*="مثال"]').value;
+    const price = document.querySelector('input[type="number"]').value;
+    const platform = document.querySelector('select').value;
+
+    // إرسال البيانات للرابط (ضع رابط n8n هنا)
+    const webhookURL = 'رابط_الـ_WEBHOOK_الخاص_بك_من_N8N';
+
+    fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            keyword: keywords,
+            max_price: price,
+            source: platform,
+            user: "Al-Ezz Member"
+        })
+    })
+    .then(response => {
+        if(response.ok) {
+            alert("تم تفعيل القناص الآلي بنجاح! ⚡ جاري مسح السوق...");
+        }
+    })
+    .catch(error => {
+        alert("تأكد من ربط n8n بشكل صحيح");
+    });
+}
+
+// تأكد أن زر التفعيل في الـ HTML عنده هذا الأمر:
+// <button class="btn-launch" onclick="launchSniper()">تفعيل القناص الآلي ⚡</button>
