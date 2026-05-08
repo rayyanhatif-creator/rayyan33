@@ -3,117 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تعرف على الطير الغلياني | حديقة الريان</title>
+    <title>دليل طيور حديقة الريان</title>
     <style>
-        :root {
-            --gold: #c5a059;
-            --dark-bg: #0a0a0a;
-            --card-bg: #141414;
-            --text-gray: #a0a0a0;
+        :root { --gold: #c5a059; --dark: #0a0a0a; --card: #141414; }
+        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        
+        .bird-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        body {
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .bird-profile {
-            width: 90%;
-            max-width: 450px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        .card {
+            background: var(--card);
+            border-radius: 15px;
             border: 1px solid #222;
+            overflow: hidden;
+            transition: 0.3s;
         }
 
-        .bird-image {
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+
+        .img-placeholder {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--gold);
+            height: 220px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-weight: bold;
         }
 
-        .content {
-            padding: 30px;
-        }
-
-        .bird-name {
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin: 0 0 10px 0;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .origin {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .details-grid {
+        .info { padding: 20px; }
+        .tag { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { margin: 10px 0; font-weight: 300; font-size: 1.5rem; }
+        
+        .stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            text-align: right;
+            gap: 10px;
+            margin-top: 15px;
             border-top: 1px solid #222;
-            padding-top: 20px;
+            padding-top: 15px;
         }
 
-        .detail-item h4 {
-            color: var(--gold);
-            margin: 0 0 5px 0;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
+        .stat-item span { display: block; font-size: 0.75rem; color: var(--gold); }
+        .stat-item p { margin: 3px 0 0; font-size: 0.9rem; color: #ccc; }
 
-        .detail-item p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: #eee;
-        }
-
-        .description {
-            margin-top: 25px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #ccc;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.7rem;
-            color: #444;
-        }
+        .footer-rights { text-align: center; margin-top: 50px; color: #444; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="bird-profile">
-        <img src="http://googleusercontent.com/image_collection/image_retrieval/13672276497791823590_0" alt="الطير الغلياني" class="bird-image">
+    <div class="bird-grid">
         
-        <div class="content">
-            <span class="origin">فصيلة نادرة | موطنه الأصلي: آسيا</span>
-            <h1 class="bird-name">الطير الغلياني</h1>
-            
-            <div class="details-grid">
-                <div class="detail-item">
-                    <h4>الغذاء المفضل</h4>
-                    <p>البذور والفواكه</p>
+        <div class="card">
+            <div class="img-placeholder">صورة المكاو</div>
+            <div class="info">
+                <span class="tag">الببغاوات العظيمة</span>
+                <h2>ببغاء المكاو</h2>
+                <div class="stats">
+                    <div class="stat-item"><span>الموطن</span><p>أمريكا الجنوبية</p></div>
+                    <div class="stat-item"><span>الغذاء</span><p>مكسرات وفواكه</p></div>
                 </div>
-                <div class="detail-item">
-                    <h4>متوسط العمر</h4>
-                    <p>15 - 20 سنة</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-placeholder">صورة الكاسكو</div>
+            <div class="info">
+                <span class="tag">الأكثر ذكاءً</span>
+                <h2>الببغاء الإفريقي الرمادي</h2>
+                <div class="stats">
+                    <div class="stat-item"><span>الموطن</span><p>وسط أفريقيا</p></div>
+                    <div class="stat-item"><span>الميزة</span><p>تقليد الكلام بدقة</p></div>
                 </div>
-                <div class="detail-item">
-                    <h4>الطبع</h4>
-                    <p
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-placeholder">صورة الكوكاتو</div>
+            <div class="info">
+                <span class="tag">الطيور المتوجة</span>
+                <h2>ببغاء الكوكاتو</h2>
+                <div class="stats">
+                    <div class="stat-item"><span>الموطن</span><p>أستراليا</p></div>
+                    <div class="stat-item"><span>الشخصية</span><p>مرح وحيوي</p></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-rights">
+        جميع الحقوق محفوظة لعائلة العز &copy; 2026
+    </div>
+
+</body>
+</html>
