@@ -3,228 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام العز | FLASH BLAST</title>
+    <title>Streamer Overlay | Al-Ezz</title>
     <style>
-        :root {
-            --gold: #c5a059;
-            --dark: #0a0a0a;
-            --card: #141414;
-            --border: #222;
-            --text-gray: #a0a0a0;
-        }
-
-        body {
-            background-color: var(--dark);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* لوحة التحكم (جهة اليمين) */
-        .admin-panel {
-            width: 40%;
-            background: #000;
-            border-left: 1px solid var(--border);
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            color: var(--gold);
-            letter-spacing: 4px;
-            font-weight: bold;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 20px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        label { color: var(--text-gray); font-size: 0.9rem; }
-
-        input, select {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 15px;
-            color: white;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        input:focus { border-color: var(--gold); }
-
-        .btn-blast {
-            background: var(--gold);
-            color: black;
-            border: none;
-            padding: 20px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
-        }
-
-        .btn-blast:hover { transform: scale(1.02); background: #d4af37; }
-
-        /* منطقة المعاينة (جهة اليسار) */
-        .preview-area {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, #111 0%, #050505 100%);
-            position: relative;
-        }
-
-        .preview-label {
-            position: absolute;
-            top: 40px;
-            color: var(--text-gray);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-
-        /* الجوال */
-        .phone-mockup {
-            width: 320px;
-            height: 650px;
-            background: #000;
-            border: 8px solid #222;
-            border-radius: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-        }
-
-        .phone-screen {
-            height: 100%;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .phone-logo { color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 50px; }
+        :root { --gold: #c5a059; --bg: transparent; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; }
         
-        #preview-icon { font-size: 4rem; margin-bottom: 20px; transition: 0.5s; }
-        #preview-title { font-size: 2.5rem; color: var(--gold); font-weight: 300; margin: 0; }
-        #preview-desc { color: var(--text-gray); font-size: 0.9rem; margin: 20px 0; }
-
-        .timer-box {
-            display: flex;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .unit {
-            background: #111;
-            padding: 10px;
-            border-radius: 8px;
-            min-width: 50px;
+        /* شريط الهدف الفخم */
+        .goal-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid #222;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
         }
 
-        .unit span { display: block; font-size: 1.2rem; color: var(--gold); font-weight: bold; }
-        .unit label { font-size: 0.6rem; color: #444; }
-
-        footer {
-            margin-top: auto;
-            font-size: 0.6rem;
-            color: #333;
+        .goal-header { font-size: 0.8rem; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; }
+        
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
         }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b6b3d, var(--gold));
+            width: 65%; /* يتم التحكم بها برمجياً */
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+            transition: 1s ease-out;
+        }
+
+        .goal-stats { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.9rem; }
+
+        /* تنبيه الدعم (يظهر ويختفي بأنيميشن) */
+        .donation-alert {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            background: linear-gradient(135deg, #111, #000);
+            border-right: 4px solid var(--gold);
+            padding: 20px 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: slideIn 0.8s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(120%); }
+            to { transform: translateX(0); }
+        }
+
+        .brand-footer { position: absolute; bottom: 10px; right: 20px; font-size: 0.6rem; color: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body>
 
-    <div class="admin-panel">
-        <div class="logo">AL-EZZ FLASH CONTROL</div>
-        
-        <div class="input-group">
-            <label>اسم المنتج/الخدمة</label>
-            <select id="item-select" onchange="updatePreview()">
-                <option value="☕">قهوة مختصة</option>
-                <option value="🍰">حلا اليوم</option>
-                <option value="🏎️">غسيل VIP</option>
-                <option value="✂️">حلاقة فخمة</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>نسبة الخصم</label>
-            <input type="text" id="discount-input" placeholder="مثال: خصم 50%" onkeyup="updatePreview()">
-        </div>
-
-        <div class="input-group">
-            <label>وصف العرض</label>
-            <input type="text" id="desc-input" placeholder="اكتب نصاً محفزاً..." onkeyup="updatePreview()">
-        </div>
-
-        <div class="input-group">
-            <label>مدة العرض (بالدقائق)</label>
-            <input type="number" id="time-input" value="30" onchange="updatePreview()">
-        </div>
-
-        <button class="btn-blast" onclick="launchBlast()">إطلاق العرض الآن 🚀</button>
-    </div>
-
-    <div class="preview-area">
-        <div class="preview-label">معاينة مباشرة لجوال الزبون</div>
-        
-        <div class="phone-mockup">
-            <div class="phone-screen">
-                <div class="phone-logo">AL-EZZ EXCLUSIVE</div>
-                
-                <div id="preview-icon">☕</div>
-                <h1 id="preview-title">خصم 50%</h1>
-                <p id="preview-desc">العرض متاح لأول 20 شخص فقط. تفضل بزيارتنا الآن.</p>
-                
-                <div class="timer-box">
-                    <div class="unit"><span id="m-timer">30</span><label>دقيقة</label></div>
-                    <div class="unit"><span>:</span></div>
-                    <div class="unit"><span id="s-timer">00</span><label>ثانية</label></div>
-                </div>
-
-                <div style="background: var(--gold); width: 100%; height: 50px; margin-top: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold;">
-                    تفعيل الخصم في الفرع
-                </div>
-
-                <footer>جميع الحقوق محفوظة لعائلة العز &copy; 2026</footer>
-            </div>
+    <div class="donation-alert">
+        <div style="font-size: 2rem;">✨</div>
+        <div>
+            <div style="color: var(--gold); font-size: 0.7rem; letter-spacing: 2px;">NEW DONATION</div>
+            <div style="font-size: 1.2rem; font-weight: bold;">Rayyan - $50.00</div>
         </div>
     </div>
 
-    <script>
-        function updatePreview() {
-            const icon = document.getElementById('item-select').value;
-            const title = document.getElementById('discount-input').value || "خصم 50%";
-            const desc = document.getElementById('desc-input').value || "العرض متاح لأول 20 شخص فقط. تفضل بزيارتنا الآن.";
-            const time = document.getElementById('time-input').value || "30";
+    <div class="goal-container">
+        <div class="goal-header">NEW PC SETUP GOAL</div>
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="goal-stats">
+            <span>$650.00</span>
+            <span style="color: #444;">$1000.00</span>
+        </div>
+    </div>
 
-            document.getElementById('preview-icon').innerText = icon;
-            document.getElementById('preview-title').innerText = title;
-            document.getElementById('preview-desc').innerText = desc;
-            document.getElementById('m-timer').innerText = time;
-        }
-
-        function launchBlast() {
-            alert("تم إرسال العرض بنجاح إلى قاعدة بيانات الزبائن! 🚀");
-            // هنا يتم الربط مع n8n Webhook مستقبلاً
-        }
-    </script>
+    <div class="brand-footer">DESIGNED BY AL-EZZ</div>
 
 </body>
 </html>
