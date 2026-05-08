@@ -3,48 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البطاقة الرقمية | عائلة العز</title>
+    <title>Al-Ezz Tech-Art</title>
     <style>
-        :root { --gold: #c5a059; --dark: #050505; }
-        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+        body { background: #000; color: #c5a059; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
+        
+        /* أنيميشن الدائرة السحرية */
+        .glow-circle {
+            width: 150px; height: 150px;
+            border: 2px solid #c5a059; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px rgba(197, 160, 89, 0.6); }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
 
-        /* تأثير الخلفية المتلألئة */
-        .bg-glow { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(197, 160, 89, 0.1) 0%, transparent 70%); z-index: 0; filter: blur(50px); animation: move 10s infinite alternate; }
-        @keyframes move { from { transform: translate(-50%, -50%); } to { transform: translate(50%, 50%); } }
-
-        .card { width: 380px; background: rgba(15, 15, 15, 0.8); border: 1px solid #222; border-radius: 30px; padding: 40px; text-align: center; backdrop-filter: blur(20px); position: relative; z-index: 1; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-
-        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--gold); padding: 5px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
-
-        h1 { font-weight: 300; font-size: 1.8rem; letter-spacing: 2px; margin: 10px 0; }
-        .title { color: var(--gold); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
-
-        .links-container { display: flex; flex-direction: column; gap: 15px; }
-        .link-item { background: #111; border: 1px solid #222; padding: 15px; border-radius: 15px; color: white; text-decoration: none; transition: 0.4s; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .link-item:hover { border-color: var(--gold); transform: translateY(-5px); background: #161616; }
-
-        .footer-logo { margin-top: 40px; font-size: 0.6rem; color: #444; letter-spacing: 5px; }
+        h1 { font-weight: 200; margin-top: 30px; letter-spacing: 5px; }
+        p { color: #555; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-
-    <div class="bg-glow"></div>
-
-    <div class="card">
-        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Profile" class="profile-img">
-        
-        <h1>ريان العز</h1>
-        <div class="title">مستشار تطوير أعمال</div>
-
-        <div class="links-container">
-            <a href="#" class="link-item"><span>💼</span> معرض المشاريع </a>
-            <a href="#" class="link-item"><span>💬</span> تواصل عبر واتساب </a>
-            <a href="#" class="link-item"><span>📍</span> موقع المكتب الرئيسي </a>
-            <a href="#" class="link-item" style="border-color: var(--gold); color: var(--gold);"><span>💳</span> تحميل بطاقة الاتصال </a>
-        </div>
-
-        <div class="footer-logo">AL-EZZ ELITE SELECTION</div>
+    <div class="glow-circle">
+        <span style="font-size: 3rem;">✨</span>
     </div>
-
+    <h1>AL-EZZ EXPERIENCE</h1>
+    <p>شكراً لزيارتك.. نحن نبني المستقبل بلمسة فنية</p>
 </body>
 </html>
