@@ -3,63 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحكم العز الذكي</title>
+    <title>موثق العز الرقمي</title>
     <style>
-        :root { --gold: #c5a059; --dark: #0a0a0a; }
-        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        :root { --gold: #c5a059; --dark: #050505; --border: #222; }
+        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
         
-        .lamp-preview {
-            width: 150px; height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
-            box-shadow: 0 0 50px var(--gold);
-            margin-bottom: 50px;
-            transition: 0.5s;
-        }
-
-        .controls { background: #111; padding: 30px; border-radius: 30px; border: 1px solid #222; width: 80%; max-width: 300px; text-align: center; }
+        .container { width: 100%; max-width: 500px; background: #0a0a0a; border: 1px solid var(--border); border-radius: 30px; padding: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.8); text-align: center; }
         
-        input[type="range"] { width: 100%; appearance: none; background: #222; height: 10px; border-radius: 5px; outline: none; margin: 20px 0; }
-        input[type="range"]::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: var(--gold); border-radius: 50%; cursor: pointer; }
+        .logo-area { font-size: 0.7rem; letter-spacing: 5px; color: var(--gold); margin-bottom: 40px; }
+        
+        h2 { font-weight: 200; font-size: 1.5rem; margin-bottom: 30px; }
+        
+        .input-group { text-align: right; margin-bottom: 20px; }
+        label { display: block; color: #555; font-size: 0.8rem; margin-bottom: 8px; }
+        input, textarea { width: 100%; background: #111; border: 1px solid #222; padding: 15px; color: white; border-radius: 12px; outline: none; box-sizing: border-box; }
+        input:focus, textarea:focus { border-color: var(--gold); }
 
-        .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .mode-btn { background: #000; border: 1px solid #333; color: #666; padding: 10px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; }
-        .mode-btn.active { border-color: var(--gold); color: var(--gold); }
+        .btn-confirm { background: var(--gold); color: black; border: none; padding: 18px; width: 100%; border-radius: 15px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn-confirm:hover { transform: scale(1.02); background: #d4af37; }
 
-        footer { position: absolute; bottom: 30px; color: #333; font-size: 0.7rem; letter-spacing: 2px; }
+        /* ستايل الشهادة */
+        #certificate { display: none; border: 2px solid var(--gold); padding: 40px; background: #000; position: relative; }
+        .cert-header { border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 30px; }
+        .stamp { position: absolute; bottom: 20px; left: 20px; border: 2px solid var(--gold); color: var(--gold); padding: 5px 15px; transform: rotate(-15deg); font-weight: bold; font-size: 0.8rem; opacity: 0.6; }
     </style>
 </head>
 <body>
 
-    <div class="lamp-preview" id="preview"></div>
-
-    <div class="controls">
-        <label>قوة الإضاءة</label>
-        <input type="range" min="0" max="100" value="50" oninput="updateBrightness(this.value)">
+    <div class="container" id="main-ui">
+        <div class="logo-area">AL-EZZ DIGITAL SEAL</div>
+        <h2>توثيق اتفاق جديد</h2>
         
-        <label>اختيار المود</label>
-        <div class="modes">
-            <button class="mode-btn active" onclick="setMode('Steady')">هادئ</button>
-            <button class="mode-btn" onclick="setMode('Focus')">تركيز</button>
-            <button class="mode-btn" onclick="setMode('Pulse')">نبض</button>
-            <button class="mode-btn" onclick="setMode('Alert')">تنبيه</button>
+        <div class="input-group">
+            <label>طرف الاتفاق الأول</label>
+            <input type="text" id="p1" placeholder="مثال: ريان العز">
         </div>
+        
+        <div class="input-group">
+            <label>تفاصيل الاتفاق (الشروط)</label>
+            <textarea id="terms" rows="4" placeholder="اكتب ما تم الاتفاق عليه بوضوح..."></textarea>
+        </div>
+
+        <button class="btn-confirm" onclick="createAgreement()">إصدار وثيقة الاتفاق 📜</button>
     </div>
 
-    <footer>AL-EZZ SMART HOME SOLUTIONS</footer>
+    <div class="container" id="certificate">
+        <div class="cert-header">
+            <div style="color: var(--gold); letter-spacing: 3px; font-size: 0.6rem;">OFFICIAL DOCUMENT</div>
+            <h3 style="font-weight: 300;">شهادة توثيق رقمية</h3>
+        </div>
+        
+        <div style="text-align: right; font-size: 0.9rem; line-height: 1.8;">
+            <p>يقر الطرف: <span id="display-p1" style="color: var(--gold);"></span></p>
+            <p>بأنه تم الاتفاق على الآتي:</p>
+            <p id="display-terms" style="color: #888; border-right: 2px solid var(--gold); padding-right: 15px;"></p>
+        </div>
+
+        <div style="margin-top: 40px; font-size: 0.7rem; color: #444;">
+            تاريخ التوثيق: <span id="date"></span> <br>
+            الرقم المرجعي: #EZ-<span id="ref"></span>
+        </div>
+
+        <div class="stamp">موثق من العز</div>
+        
+        <button class="btn-confirm" style="margin-top: 40px; background: #222; color: white;" onclick="window.print()">تحميل كملف PDF</button>
+    </div>
 
     <script>
-        function updateBrightness(val) {
-            document.getElementById('preview').style.opacity = val / 100;
-            document.getElementById('preview').style.boxShadow = `0 0 ${val/2}px var(--gold)`;
-        }
+        function createAgreement() {
+            const p1 = document.getElementById('p1').value;
+            const terms = document.getElementById('terms').value;
 
-        function setMode(mode) {
-            // هنا مستقبلاً ترسل الأمر للقطعة عبر الواي فاي
-            console.log("Current Mode: " + mode);
-            const btns = document.querySelectorAll('.mode-btn');
-            btns.forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            if(!p1 || !terms) { alert("فضلاً أكمل البيانات"); return; }
+
+            document.getElementById('main-ui').style.display = 'none';
+            document.getElementById('certificate').style.display = 'block';
+            
+            document.getElementById('display-p1').innerText = p1;
+            document.getElementById('display-terms').innerText = terms;
+            document.getElementById('date').innerText = new Date().toLocaleString('ar-SA');
+            document.getElementById('ref').innerText = Math.floor(Math.random() * 90000) + 10000;
         }
     </script>
 </body>
