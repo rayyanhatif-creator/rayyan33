@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خزنة العز الرقمية | THE VAULT</title>
+    <title>هاتف | THE VAULT</title>
     <style>
-        :root { --gold: #c5a059; --bg: #050505; --card: #0d0d0d; --border: #1a1a1a; }
+        :root { --gold: #c5a059; --bg: #050505; --card: #0d0d0d; --border: #1a1a1a; --hatif-teal: #48a08b; }
         body { background: var(--bg); color: white; font-family: 'Times New Roman', serif; margin: 0; padding: 0; }
         
+        /* شريط التنقل العلوي (Hatif Style) */
+        .navbar {
+            background: #fff;
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        .nav-logo { color: #1a1a1a; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; font-family: sans-serif; }
+        .nav-logo span { color: var(--hatif-teal); }
+        .nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: #666; font-family: sans-serif; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--hatif-teal); }
+        .btn-hatif { background: var(--hatif-teal); color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-family: sans-serif; font-size: 0.8rem; }
+
         /* شاشة الدخول الفخمة */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1s; }
         .pin-input { background: transparent; border: none; border-bottom: 2px solid var(--gold); font-size: 2rem; color: var(--gold); text-align: center; width: 200px; outline: none; letter-spacing: 10px; }
@@ -30,6 +50,19 @@
     </style>
 </head>
 <body>
+
+    <nav class="navbar">
+        <div class="nav-right">
+            <div class="nav-logo">HATIF <span>| هاتف</span></div>
+            <ul class="nav-links">
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">الخزنة</a></li>
+                <li><a href="#">التقارير</a></li>
+                <li><a href="#">الأسئلة الشائعة</a></li>
+            </ul>
+        </div>
+        <a href="#" class="btn-hatif">جولة في النظام</a>
+    </nav>
 
     <div class="overlay" id="lockScreen">
         <div style="color: var(--gold); margin-bottom: 30px; letter-spacing: 5px; font-size: 0.8rem;">PRIVATE ACCESS ONLY</div>
@@ -79,7 +112,7 @@
     <script>
         function checkPin() {
             const pin = document.getElementById('pin').value;
-            if(pin === "1234") { // الرمز الافتراضي
+            if(pin === "1234") { // الرمز الافتراضي للدخول
                 document.getElementById('lockScreen').style.opacity = "0";
                 setTimeout(() => {
                     document.getElementById('lockScreen').style.display = "none";
